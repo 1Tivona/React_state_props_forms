@@ -1,6 +1,6 @@
 .App {
-  text-align: center;
-  background-color:lightblue;
+  /*text-align: center;*/
+  background-color: lightblue;
 }
 
 .App-logo {
@@ -25,11 +25,29 @@
 }
 
 .navBar-title {
+  display: flex;
+  align-items: center;
   margin: 10px;
   height: 100px;
   text-align: center;
   background: steelblue;
+  border: 5px solid steelblue;
+}
 
+h1 {
+  color: white;
+  margin: 0 auto;
+}
+
+.music-icon {
+float: left;
+  width: 75px;
+
+}
+
+.playlist {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .playlist-form {
@@ -39,10 +57,32 @@
   justify-content: center;
 }
 
-.playlist {
-  display: flex;
-  
+.PlayListItem {
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  justify-content: flex-start;
+  padding: 25px;
+  width: 570px;
+}
 
+.card-text {
+    /*display: flex;*/
+
+
+}
+
+.button {
+  text-align: center;
+  margin: 40px 40px;
+}
+
+.card-block {
+  /*display: flex;
+  flex-wrap: wrap;*/
+  margin: 0;
+  max-width: 20%;
+  border: 4px solid steelblue;
+  width: 400px;
 
 
 }

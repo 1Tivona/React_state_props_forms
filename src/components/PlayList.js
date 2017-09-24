@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PlayListItem from './PlayListItem.js'
+import PlayListItem from '../components/PlayListItem.js'
 
 
 class PlayList extends Component {
@@ -35,11 +35,14 @@ class PlayList extends Component {
       render(){
         return (
             <div>
-              <PlayListItem songs={this.state.songs} />
-                <form className="button">
+
+              <form className="button" onSubmit={this.updateItem}>
                   <button onClick={this.fetchData}>Update List</button>
-                </form>
+              </form>
+              <div className="playlist">
+                {this.state.songs.map((song) => <PlayListItem song={song} key={song._id} />)}
               </div>
+            </div>
 
         );
       }

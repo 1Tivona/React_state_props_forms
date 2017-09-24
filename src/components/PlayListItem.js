@@ -1,30 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
+
+const PlayListItem = ({song}) => (
 
 
-export default class PlayListItem extends Component{
-  render(){
-    return(
 
-      <div className="PlayListItem">
-        {this.props.songs.map(music =>
-        <div className="card">
-          <div className="card-block">
-          <p className="card-text">User: {this.props.userName}</p>
+          <div className="card-block" key={song._id}>
             <div>
-            <p className="card-text">Artist/Band: {this.props.songArtist}</p>
-              <div>
-              <p className="card-text">Song Title: {this.props.songTitle}</p>
+              <p className="card-text">User: {song.userName}</p>
                 <div>
-                <p className="card-text">Notes about Song: {this.props.songNotes}</p>
+                  <p className="card-text">Artist/Band: {song.songArtist}</p>
+                    <div>
+                      <p className="card-text">Song Title: {song.songTitle}</p>
+                        <div>
+                          <p className="card-text">Notes about Song: {song.songNotes}</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
           </div>
-        </div>
-        )}
-      </div>
 
 
-  );
-  }
-}
+
+);
+
+
+
+
+
+ export default PlayListItem;

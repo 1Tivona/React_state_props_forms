@@ -10,36 +10,37 @@ class PlayListForm extends Component {
       userName: '',
       songArtist: '',
       songTitle: '',
-      songNotes: '',
+      songNotes: ''
   };
-  this.addToList = this.addToList.bind(this);
-  this.updateItem = this.updateItem.bind(this);
+  this.handleAddToList = this.handleAddToList.bind(this);
+  this.handleUpdateItem = this.handleUpdateItem.bind(this);
 }
 
-  updateItem (e) {
+  handleUpdateItem (e) {
     e.preventDefault();
     this.setState({[e.target.id]: e.target.value});
   }
 
-  addToList = (e) => {
+  handleAddToList = (e) => {
+      console.log("handleAddToList executed");
       e.preventDefault();
       let listItem = JSON.stringify(this.state);
+      console.log(listItem);
 
       this.setState({ userName: e.target.value, songTitle: e.target.value, songArtist: e.target.value, songNotes: e.target.value});
 
-
-      fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
-        method: "POST",
-        body: listItem,
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
+      fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting",
+            {
+              method: "POST",
+              body: listItem,
+              headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+              }
+            }
       ).then(response => {
         console.log(response, "yay");
         this.setState({userName: '', songNotes: '', songArtist: '', songTitle:''});
-
       }).catch(err => {
         console.log(err, "boo!");
       });
@@ -47,16 +48,18 @@ class PlayListForm extends Component {
 
   render() {
     return (
+
       <div className="form-group form-group-default">
-        <form onSubmit={this.addToList}>
+        
+        <form onSubmit={this.handleAddToList}>
           <label htmlFor="userName">User Name: </label>
-          <input onChange={this.updateItem} type="text" className="form-control input-default" id="userName" placeholder="Name or User Name" value={this.state.userName}/>
+          <input onChange={this.handleUpdateItem} type="text" className="form-control input-default" id="userName" placeholder="Name or User Name" value={this.state.userName}/>
           <label htmlFor="songArtist">Artist/Band: </label>
-          <input onChange={this.updateItem} type="text" className="form-control input-default" id="songArtist" placeholder="Artist or Band Name" value={this.state.songArtist}/>
+          <input onChange={this.handleUpdateItem} type="text" className="form-control input-default" id="songArtist" placeholder="Artist or Band Name" value={this.state.songArtist}/>
           <label htmlFor="songTitle">Song Title: </label>
-          <input onChange={this.updateItem} type="text" className="form-control input-default" id="songTitle" placeholder="Song Title" value={this.state.songTitle}/>
+          <input onChange={this.handleUpdateItem} type="text" className="form-control input-default" id="songTitle" placeholder="Song Title" value={this.state.songTitle}/>
           <label htmlFor="songNotes">Notes About Song: </label>
-          <textarea onChange={this.updateItem} htmlFor="textarea" rows="10" cols="50" type="text" className="form-control" id="songNotes" value={this.state.songNotes} />
+          <textarea onChange={this.handleUpdateItem} rows="10" cols="50" className="form-control input-default" id="songNotes" placeholder="What do you want to say about this song?" value={this.state.songNotes} />
           <br/>
           <input className="btn btn-primary btn-lg" type="submit" value="Submit"/>
         </form>
